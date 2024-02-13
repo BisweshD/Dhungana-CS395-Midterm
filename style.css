@@ -1,0 +1,875 @@
+/*=== Variables for CSS colors and gradients ===*/
+:root {
+  --accent: #4cff5e;/* Bright green accent color */
+  --bg-gradient: linear-gradient(30deg, #0f2b79, #063fa8, #000, #0a230d, #1831b9); /* Background gradient for elements */
+  --primary: #0f0f0f;/* Dark color for primary backgrounds */
+  --secondary: #333;/* Dark color for secondary elements and backgrounds */
+  --text: #fff;/* White color for text */
+}
+
+
+
+p {
+  font-size: 1.3em; /* Paragraph font size */
+  margin-bottom: 2em; /* Space below paragraphs */
+  line-height: 1.6em; /* Line height for paragraph text */
+}
+
+h1 {
+  font-size: 3.5em; /* Heading font size */
+  font-size: clamp(3em, 5vw, 5em); /* Responsive font size with min and max values */
+  text-transform: uppercase; /* Uppercase heading text */
+}
+
+.container {
+  max-width: 1200px; /* Maximum width of container */
+  padding: 2.5em; /* Padding inside container */
+  margin: 0 auto; /* Center container horizontally */
+}
+
+.gradient-background {
+  position: fixed; /* Fixed position to stay in place during scrolling */
+  top: 0; /* Align to the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  width: 100%; /* Full viewport width */
+  height: 100%; /* Full viewport height */
+  z-index: -1; /* Place behind other content */
+  background: var(--bg-gradient); /* Apply gradient variable as background */
+  background-size: 180% 180%; /* Size of the gradient background */
+  animation: gradient-animation 18s ease infinite; /* Animate the gradient background */
+}
+
+
+/*=== Global Styles ===*/
+body {
+  font-family: 'Rubik', sans-serif; /* Global font family */
+  color: var(--text); /* Global text color */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+* {
+  margin: 0; /* Reset margin for all elements */
+  padding: 0; /* Reset padding for all elements */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+a {
+  text-decoration: none; /* Remove underline from links */
+  color: var(--text); /* Set link color to the global text color */
+}
+
+
+
+
+/* elements for decorative lines before and after the h1 element */
+.heading h1::before,
+.heading h1::after {
+  content: ""; /* Necessary for pseudo-elements to display */
+  position: absolute; /* Positions the pseudo-elements absolutely within their parent h1 */
+  background-color: var(--accent); /* Sets the color of the lines to the accent color defined in CSS variables */
+  width: 1.5em; /* Sets the width of the decorative lines */
+  height: 4px; /* Sets the height/thickness of the decorative lines */
+  top: 50%; /* Positions the lines in the middle vertically of the h1 */
+  transform: translateY(-50%); /* Corrects the position by moving the lines up by half their height to truly center them */
+}
+
+.heading h1::before {
+  left: -2.5em; /* Positions the before line to the left of the h1 */
+}
+
+
+.heading h1::after {
+  right: -2.5em; /* Positions the after line to the right of the h1 */
+}
+
+/*=== Hero Section Stling ===*/
+.hero {
+  padding: 2.5em; /* Adds padding inside the hero section */
+  min-height: calc(100vh - 6.4em); /* Sets the minimum height to be the full viewport height minus 6.4em */
+  display: flex; /* Enables flexbox layout, allowing for easy centering of content */
+  justify-content: center; /* Centers the flex items horizontally */
+  align-items: center; /* Centers the flex items vertically */
+}
+
+.title > div {
+  display: flex; /* Enables flexbox layout for direct children of .title */
+  justify-content: flex-start; /* Aligns children to the start of the flex container */
+  align-items: center; /* Centers items vertically within the flex container */
+  gap: 2em; /* Sets a gap between each flex item */
+}
+
+
+.title img {
+  width: clamp(6em, 9vw, 10em); /* Sets a responsive width for the image, clamping between minimum and maximum values */
+  height: clamp(2em, 3.5vw, 4em); /* Sets a responsive height for the image, clamping between minimum and maximum values */
+  border-radius: 5em; /* Rounds the corners of the image */
+  object-fit: cover; /* Ensures the image covers the area of the element without distorting its aspect ratio */
+}
+
+/*=== Navbar ===*/
+.navbar {
+  position: fixed; /* Fixes the navbar at a specific position on the page */
+  bottom: 0; /* Positions the navbar at the bottom of the viewport */
+  left: 0; /* Aligns the navbar to the left edge of the viewport */
+  width: 100%; /* Ensures the navbar spans the full width of the viewport */
+  background-color: var(--primary); /* Sets the background color of the navbar using a CSS variable */
+  z-index: 5; /* Ensures the navbar stacks above other content */
+}
+
+/* Heading Section Styling */
+.heading {
+  padding: 4.5em 0 2em 0; /* Adds top and bottom padding to the heading section, with no padding on the sides */
+  text-align: center; /* Centers the text within the heading section */
+}
+
+.heading h1 {
+  position: relative; /* Allows absolute positioning of pseudo-elements relative to this h1 element */
+  display: inline-block; /* Makes the h1 element an inline block, allowing it to size to its content */
+}
+
+.navbar .container {
+  display: flex; /* Enables flexbox layout for elements inside the navbar container */
+  justify-content: center; /* Centers the flex items horizontally */
+  align-items: center; /* Centers the flex items vertically */
+  gap: 1em; /* Sets a gap between each flex item */
+  transition: 300ms; /* Adds a transition effect for all changes */
+}
+
+
+.resume-download { /* Styling for the resume download button */
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.resume-button { /* Styling for the resume download button */
+  display: inline-block;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.resume-button:hover { /* Styling for the resume download button */
+  background-color: #45a049;
+}
+
+
+
+/* Active classes for Navbar */
+.navbar .link-active {
+  background-color: var(--primary); /* Sets the background color for active links */
+  border: 2px var(--accent) solid; /* Adds a solid border with accent color */
+  color: var(--accent); /* Changes the text color to the accent color */
+  transform: translateY(-3em) scale(1.1); /* Moves the link up and enlarges it */
+}
+
+/* Adjusts padding for the container when the navbar is active */
+.navbar-active .container {
+  padding: 1.5em;
+}
+
+/* About Section Styling */
+#about .container {
+  padding: 2.5em; /* Adds padding inside the container of the about section */
+}
+
+#about .card {
+  margin: 0 auto 3em auto; /* Centers the card and adds margin at the bottom */
+  width: 18em; /* Sets a fixed width */
+  height: 25em; /* Sets a fixed height */
+  position: sticky; /* Makes the card sticky within its container */
+  top: 2.5em; /* Distance from the top when scrolling */
+  background-color: var(--primary); /* Sets the background color */
+  border-radius: 1em; /* Rounds the corners of the card */
+  overflow: hidden; /* Hides overflow content */
+}
+
+#about .card img {
+  position: absolute; /* Positions the image absolutely within the card */
+  top: 50%; /* Centers vertically */
+  left: 50%; /* Centers horizontally */
+  transform: translate(-50%, -50%); /* Adjusts the position to truly center the image */
+  width: 20.5em; /* Sets the image width */
+  height: 30.5em; /* Sets the image height */
+  border-radius: 0.8em; /* Rounds the corners of the image */
+}
+
+#about .card::before {
+  content: ""; /* Necessary for the pseudo-element to display */
+  position: absolute; /* Positions absolutely within the card */
+  top: 50%; /* Centers vertically */
+  left: 50%; /* Centers horizontally */
+  transform: translate(-50%, -50%); /* Adjusts the position for true centering */
+  width: 8em; /* Width of the decorative element */
+  height: 120%; /* Height of the decorative element */
+  background-image: linear-gradient(90deg, var(--primary), var(--accent), var(--primary)); /* Applies a gradient background */
+  animation: rotate 3s linear infinite; /* Animates the element to rotate */
+}
+
+
+.navbar a {
+  font-size: 1.1em; /* Sets the font size for links in the navbar */
+  text-transform: uppercase; /* Makes all link text uppercase */
+  padding: 0.8em 1.5em; /* Adds padding around the links for better clickability and appearance */
+  border: 2px var(--primary) solid; /* Adds a border with the primary color defined in CSS variables */
+  border-radius: 5em; /* Rounds the corners of the link elements */
+  transition: 100ms; /* Adds a quick transition effect for hover states */
+}
+
+.navbar a:hover {
+  color: var(--accent); /* Changes the link color to the accent color on hover */
+}
+
+.navbar i {
+  display: none; /* Hides the <i> elements (usually icons) in the navbar, if any */
+}
+
+
+.dev-name {
+  margin: 0; /* Removes margin */
+  font-weight: bold; /* Makes the font bold */
+  color: var(--accent); /* Sets the text color to the accent color */
+}
+
+/* Skills Section Styling */
+#skills .container {
+  display: grid; /* Enables a grid layout */
+  grid-template-columns: 1fr 1fr; /* Creates two columns of equal width */
+  grid-gap: 2em; /* Sets the gap between grid items */
+}
+
+
+
+.main-skills .skill {
+  margin-bottom: 3em; /* Adds a bottom margin */
+  display: grid; /* Enables grid layout for skills */
+  grid-template-columns: 3em auto; /* Sets column sizes */
+  grid-gap: 1em; /* Sets the gap between grid items */
+}
+
+.main-skills i {
+  font-size: 3em; /* Sets the font size for icons */
+}
+
+.skill-name {
+  font-weight: 400; /* Sets the font weight */
+  margin-bottom: 0.2em; /* Adds a small bottom margin */
+}
+
+
+
+.progress {
+  width: 0; /* Initial width set to 0 */
+  height: 100%; /* Full height of its container */
+  background-color: var(--accent); /* Sets the fill color */
+}
+
+
+
+/* Icon colors for specific skills */
+.fa-html5 {color: #f06529;}
+.fa-css3-alt {color: #2965f1;}
+.fa-js {color: #f0db4f;}
+.fa-react {color: #36dff8;}
+.fa-python {color: #f9b233;}
+
+.other-skills {
+  margin-top: 1.2em; /* Adds top margin */
+}
+
+
+.main-skills .skill > div {
+  width: 90%; /* Sets the width for the div within skill items */
+}
+
+.progress-bar {
+  width: 100%; /* Full width of its container */
+  height: 1em; /* Sets a fixed height */
+  background-color: var(--secondary); /* Sets the background color */
+}
+
+
+.other-skills p {
+  font-size: 1.1em; /* Sets the font size */
+}
+
+.other-skills b {
+  color: var(--accent); /* Changes the font color for bold text */
+}
+
+/* Projects Section Styling */
+.gallery-controls {
+  padding-bottom: 2em; /* Adds bottom padding */
+  display: flex; /* Enables flex layout */
+  justify-content: center; /* Centers items horizontally */
+  align-items: center; /* Centers items vertically */
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+}
+
+.gallery-controls button {
+  margin: 1em; /* Adds margin around buttons */
+  padding: 0.7em 1.5em; /* Adds padding inside buttons */
+  font-size: 1.1em; /* Sets the font size */
+  border: none; /* Removes the border */
+  background: var(--primary); /* Sets the background color */
+  color: var(--text); /* Sets the text color */
+  border: 2px solid var(--accent); /* Adds a border with the accent color */
+  border-radius: 5em; /* Rounds the corners */
+  cursor: pointer; /* Changes the cursor to a pointer */
+  transition: 0.3s; /* Adds a transition effect */
+}
+
+.gallery-controls button:hover {
+  background: var(--secondary); /* Changes background color on hover */
+}
+
+.gallery-controls .btn-active {
+  background: var(--secondary); /* Sets the background color for active buttons */
+  color: var(--accent); /* Changes text color to accent */
+}
+
+.gallery .images {
+  max-width: 1360px; /* Sets a maximum width */
+  margin: 0 auto; /* Centers the gallery horizontally */
+  display: flex; /* Enables flex layout */
+  justify-content: flex-start; /* Aligns items to the start */
+  align-items: center; /* Centers items vertically */
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  gap: 2em; /* Sets the gap between items */
+}
+
+.gallery img {
+  width: 20em; /* Sets the image width */
+  margin: 1em; /* Adds margin around images */
+  border-radius: 0.2em; /* Rounds the corners of images */
+  transition: 0.6s; /* Adds a transition effect */
+}
+
+.gallery .img-shrink {
+  width: 0em; /* Shrinks image to 0 width */
+  margin: -1em; /* Negative margin to pull adjacent items closer */
+}
+
+/*=== Skills Section ===*/
+#experience {
+  padding: 0 2.5em; /* Adds horizontal padding to the experience section for spacing */
+}
+
+/* Styles for headings within the timeline component */
+.timeline h2 {
+  margin-bottom: 1em; /* Adds space below the heading */
+}
+
+/* General styling for the timeline */
+.timeline {
+  margin: 5em auto; /* Centers the timeline with vertical margin for spacing */
+  max-width: 34.15em; /* Restricts the maximum width to ensure layout consistency */
+}
+
+/* Styling for individual checkpoints in the timeline */
+.checkpoint {
+  max-width: 34em; /* Sets a maximum width for each checkpoint */
+  padding-top: 2em; /* Adds padding on the top for spacing */
+  padding-bottom: 2em; /* Adds padding on the bottom for spacing */
+  position: relative; /* Enables absolute positioning for child elements */
+}
+
+/* Styles for the content boxes within each checkpoint */
+.checkpoint div {
+  border: 2px solid var(--accent); /* Adds a border with accent color */
+  border-radius: 1em; /* Rounds the corners of the content boxes */
+  padding: 1.5em; /* Adds padding inside the content boxes for spacing */
+}
+
+/* Styling for ordered lists within checkpoints */
+.checkpoint ol {
+  padding-left: 1.2em; /* Adds padding to the left for alignment */
+}
+
+/* Styling for list items within checkpoints */
+.checkpoint li {
+  font-size: 1.2em; /* Sets the font size larger for visibility */
+  line-height: 1.5em; /* Increases the line height for better readability */
+}
+
+/* Adds bottom margin to all list items except the last child for spacing */
+.checkpoint li:not(:last-child) {
+  margin-bottom: 1.2em;
+}
+
+/* Styling for odd-numbered checkpoints */
+.checkpoint:nth-child(odd) {
+  border-left: 4px solid var(--accent); /* Adds a left border for visual differentiation */
+  padding-left: 3em; /* Adds padding to the left for content spacing */
+  transform: translateX(270px); /* Moves the checkpoint to the right for positioning */
+}
+
+/* Styling for even-numbered checkpoints */
+.checkpoint:nth-child(even) {
+  border-right: 4px solid var(--accent); /* Adds a right border for visual differentiation */
+  padding-right: 3em; /* Adds padding to the right for content spacing */
+  transform: translateX(-270px); /* Moves the checkpoint to the left for positioning */
+}
+
+/* Creates a decorative line for both odd and even checkpoints */
+.checkpoint:nth-child(odd)::before,
+.checkpoint:nth-child(even)::before {
+  content: ''; /* Necessary for the pseudo-element to display */
+  background: var(--accent); /* Sets the background color */
+  width: 3em; /* Sets the width of the decorative line */
+  height: 3px; /* Sets the height/thickness of the decorative line */
+  position: absolute; /* Positions the line absolutely within the checkpoint */
+  top: 50%; /* Centers the line vertically */
+  transform: translateY(-50%); /* Adjusts the line to be exactly centered */
+}
+
+/* Positions the decorative line for odd checkpoints */
+.checkpoint:nth-child(odd)::before {
+  left: 0; /* Aligns the line to the left edge */
+}
+
+/* Positions the decorative line for even checkpoints */
+.checkpoint:nth-child(even)::before {
+  right: 0; /* Aligns the line to the right edge */
+}
+
+/* Creates a decorative dot for both odd and even checkpoints */
+.checkpoint:nth-child(odd) div::before,
+.checkpoint:nth-child(even) div::before {
+  content: ''; /* Necessary for the pseudo-element to display */
+  background: var(--accent); /* Sets the background color */
+  box-shadow: 0 0 0.5em var(--accent); /* Adds a glow effect */
+  width: 0.8em; /* Sets the width of the dot */
+  height: 0.8em; /* Sets the height of the dot */
+  position: absolute; /* Positions the dot absolutely within the div */
+  top: 50%; /* Centers the dot vertically */
+  transform: translateY(-50%); /* Adjusts the dot to be exactly centered */
+  border-radius: 50%; /* Makes the dot circular */
+}
+
+/* Positions the decorative dot for odd checkpoints */
+.checkpoint:nth-child(odd) div::before {
+  left: -0.5em; /* Places the dot to the left outside the div */
+}
+
+/* Positions the decorative dot for even checkpoints */
+.checkpoint:nth-child(even) div::before {
+  right: -0.5em; /* Places the dot to the right outside the div */
+}
+
+
+/*=== Contact Section ===*/
+#contact {
+  text-align: center; /* Centers all text within the contact section */
+}
+
+/* Styles for the call-to-action within the contact section */
+.call-to-action {
+  padding: 4.5em 2.5em; /* Adds padding for spacing */
+  background-image: url(./img/banner.jpg); /* Sets a background image */
+  background-size: cover; /* Ensures the background image covers the area */
+  background-repeat: no-repeat; /* Prevents the background image from repeating */
+  background-position: center; /* Centers the background image */
+  background-attachment: fixed; /* Fixes the background image during scrolling */
+  position: relative; /* Enables absolute positioning for child elements */
+}
+
+/* Adds a dark overlay to the call-to-action background image */
+.call-to-action::before {
+  content: ""; /* Necessary for the pseudo-element to display */
+  background-color: rgba(0, 0, 0, .6); /* Sets a semi-transparent black overlay */
+  position: absolute; /* Covers the entire call-to-action area */
+  top: 0; /* Makes the top margin 0*/
+  left: 0;/* Makes the left margin 0*/
+  width: 100%;/* Makes width of the action to 100%*/
+  height: 100%;/* Makes the height of the actionto 100%*/
+  z-index: 0; /* Ensures the overlay is behind content */
+}
+
+
+/* Ensures content within the call-to-action is positioned above the overlay */
+.call-to-action div {
+  position: relative;
+}
+
+/* Sets the size for headings within the call-to-action */
+.call-to-action h2 {
+  font-size: 2em;
+}
+
+/* Styles for the main button within the contact section */
+.btn-main {
+  margin-top: 2em; /* Adds space above the button */
+  width: 10em; /* Sets the button width */
+  height: 3em; /* Sets the button height */
+  border-radius: 5em; /* Rounds the corners of the button */
+  background-color: var(--primary); /* Sets the background color */
+  color: var(--text); /* Sets the text color */
+  font-size: 1.5em; /* Sets the font size */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  display: inline-flex; /* Enables flex layout for centering content */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  transition: 200ms; /* Adds a smooth transition for hover effects */
+  position: relative; /* Enables absolute positioning for child elements */
+  overflow: hidden; /* Hides overflow content, important for hover effect */
+}
+
+/* Individual Social Media Icons */
+.social-media a {
+  width: 2em; /* Sets a fixed width for icons */
+  height: 2em; /* Sets a fixed height for icons */
+  font-size: 2em; /* Increases the size of the icon font */
+  border: 2px var(--accent) solid; /* Adds a border with accent color */
+  border-radius: 50%; /* Makes the icons circular */
+  display: flex; /* Uses flexbox for centering the icon inside the anchor */
+  justify-content: center; /* Centers the icon horizontally */
+  align-items: center; /* Centers the icon vertically */
+  transition: 200ms; /* Smooth transition for hover effects */
+}
+
+/* Hover Effect for Social Media Icons */
+.social-media a:hover {
+  color: var(--primary); /* Changes icon color on hover */
+  background-color: var(--accent); /* Changes icon background on hover */
+}
+
+/* Positions and styles the span within the main button */
+.btn-main span {
+  display: flex; /* Enables flex layout for centering content */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  width: 9.8em; /* Slightly smaller width than the button for padding effect */
+  height: 2.8em; /* Slightly smaller height than the button for padding effect */
+  background-color: inherit; /* Inherits the background color from the button */
+  border-radius: inherit; /* Inherits the border-radius from the button */
+  z-index: 1; /* Ensures the span is above the decorative before element */
+}
+
+/* Decorative element for the button, adds animated gradient background */
+.btn-main::before {
+  content: ""; /* Necessary for the pseudo-element to display */
+  position: absolute; /* Positions the element absolutely within the button */
+  top: 50%; /* Centers vertically */
+  left: 50%; /* Centers horizontally */
+  transform: translate(-50%, -50%); /* Adjusts position to be exactly centered */
+  width: 110%; /* Slightly wider than the button for visual effect */
+  height: 2em; /* Height set to match the button's text area */
+  background: linear-gradient(0deg, var(--primary), var(--accent), var(--primary)); /* Creates a gradient background */
+  z-index: 0; /* Ensures the gradient is behind the button's text */
+  animation: rotate 3s linear infinite; /* Animates the gradient for a dynamic effect */
+}
+
+/* Styles for the button on hover */
+.btn-main:hover {
+  background-color: var(--accent); /* Changes the background color */
+  overflow: visible; /* Shows overflow content, reversing the hidden property */
+}
+
+/* Adjusts the before pseudo-element's animation and size on hover */
+.btn-main:hover:before {
+  animation: none; /* Stops the animation */
+  width: 100%; /* Matches the button width */
+  height: 100%; /* Matches the button height */
+  background: var(--accent); /* Sets a solid background color */
+  box-shadow: 0 0 1em var(--accent); /* Adds a glow effect */
+  border-radius: inherit; /* Inherits the border-radius from the button */
+}
+
+/* Section with a dark background */
+.dark-bg {
+  padding: 4em 0; /* Adds top and bottom padding for spacing within the section */
+  background-color: #000; /* Sets the background color to black */
+}
+
+/* Container for contact cards, enabling responsive layout */
+.contact-cards {
+  display: flex; /* Uses flexbox layout for positioning child elements */
+  justify-content: center; /* Centers the child elements horizontally */
+  align-items: center; /* Centers the child elements vertically */
+  flex-wrap: wrap; /* Allows child elements to wrap to the next line for responsiveness */
+  gap: 2em; /* Creates space between each child element */
+}
+
+/* Styling for individual cards within the .contact-cards container */
+.contact-cards .card {
+  width: 18em; /* Sets a fixed width for the cards */
+  height: 12em; /* Sets a fixed height for the cards */
+  display: flex; /* Uses flexbox layout for positioning child elements */
+  justify-content: center; /* Centers the child elements horizontally within the card */
+  align-items: center; /* Centers the child elements vertically within the card */
+  position: relative; /* Allows absolute positioning of child elements relative to the card */
+}
+
+/* Styling for the div element inside each card */
+.contact-cards .card div {
+  padding: 2.5em; /* Adds padding inside the div for spacing */
+  position: absolute; /* Positions the div absolutely within the card */
+  top: 50%; /* Centers the div vertically within the card */
+  left: 50%; /* Centers the div horizontally within the card */
+  width: 98%; /* Sets the width slightly less than the card to create a border effect */
+  height: 98%; /* Sets the height slightly less than the card to create a border effect */
+  transform: translate(-50%, -50%); /* Adjusts the div's position to be truly centered */
+  background-image: linear-gradient(
+          0deg, #000, var(--primary)
+  ); /* Creates a gradient background from black to the primary color */
+  border-radius: 1em; /* Rounds the corners of the div */
+}
+
+
+/* Creates a pseudo-element behind each card for additional visual effect */
+.contact-cards .card::before {
+  content: ""; /* Necessary for the pseudo-element to display */
+  position: absolute; /* Positions the pseudo-element absolutely within the card */
+  top: 50%; /* Centers the pseudo-element vertically */
+  left: 50%; /* Centers the pseudo-element horizontally */
+  width: 100%; /* Matches the width of the card */
+  height: 100%; /* Matches the height of the card */
+  transform: translate(-50%, -50%); /* Adjusts the position to be exactly centered */
+  background-image: linear-gradient(
+          0deg, #000, var(--accent)
+  ); /* Creates a gradient background from black to the accent color */
+  border-radius: 1.2em; /* Sets the border radius slightly larger than the div for a layered effect */
+  z-index: 0; /* Ensures the pseudo-element is behind the div */
+}
+
+/* Styles icons within the contact cards */
+.contact-cards i {
+  font-size: 2.5em; /* Sets the size of the icon */
+  color: var(--accent); /* Sets the color of the icon to the accent color */
+  margin-bottom: 0.5em; /* Adds space below the icon for separation */
+}
+
+/* Social Media Icons Container */
+.social-media {
+  display: flex; /* Uses flexbox layout for positioning icons */
+  justify-content: center; /* Centers icons horizontally */
+  align-items: center; /* Centers icons vertically */
+  flex-wrap: wrap; /* Allows icons to wrap to the next line if needed */
+  gap: 2em; /* Creates space between each icon */
+  margin-top: 6em; /* Adds space above the icons container */
+}
+
+
+/* Loader Styling */
+.loader {
+  border: 5px solid; /* Sets the border thickness */
+  border-color: var(--secondary) transparent; /* Border color with transparency for spinning effect */
+  animation-duration: 2s; /* Duration of the spin animation */
+  display: flex; /* Uses flexbox for centering content inside the loader */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  margin: 2em 0; /* Adds vertical margin */
+  width: 5em; /* Sets a fixed width */
+  height: 5em; /* Sets a fixed height */
+  border-radius: 50%; /* Makes the loader circular */
+  animation: spin 1s linear infinite; /* Applies a continuous spin animation */
+}
+
+/* Inner Loader Styling */
+.loader span {
+  width: 75%; /* Sets the width relative to its parent */
+  height: 75%; /* Sets the height relative to its parent */
+  border: 5px solid; /* Sets the border thickness */
+  border-color: transparent var(--accent); /* Border color with one side transparent for effect */
+  border-radius: 50%; /* Makes the inner loader circular */
+  animation: spin 1.5s linear infinite; /* Applies a continuous spin animation with different timing */
+}
+
+
+
+
+/* Footer Styling */
+footer {
+  background-color: var(--primary); /* Sets the background color */
+  text-align: center; /* Centers the text inside the footer */
+  padding: 2.5em; /* Adds padding for spacing */
+  margin-bottom: 6.3em; /* Adds space below the footer */
+  border-bottom: 2px #222 solid; /* Adds a bottom border for visual separation */
+}
+
+/* Footer Paragraph Styling */
+footer p {
+  margin: 0; /* Removes default margin */
+  color: var(--secondary); /* Sets text color */
+  font-size: 1.5em; /* Increases text size */
+}
+/* Mouse Tracker Styling */
+.tracker {
+  position: absolute; /* Positions the tracker absolutely on the page */
+  top: 0;
+  left: 0;
+  border: 1px var(--accent) solid; /* Adds a border with accent color */
+  width: 2em; /* Sets a fixed width */
+  height: 2em; /* Sets a fixed height */
+  border-radius: 50%; /* Makes the tracker circular */
+  pointer-events: none; /* Ensures the tracker doesn't interfere with mouse events */
+  z-index: 10; /* Ensures the tracker is above other content */
+}
+
+/* Preloader Styling */
+.preloader {
+  background-color: var(--primary); /* Sets the background color */
+  position: fixed; /* Fixes the preloader in place */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  display: flex; /* Uses flexbox for centering the loader */
+  justify-content: center; /* Centers the loader horizontally */
+  align-items: center; /* Centers the loader vertically */
+  z-index: 9; /* Ensures the preloader is above the page content but below the tracker */
+}
+
+
+
+
+/* Media Queries for Responsive Design */
+
+/* Media query for screens with a maximum width of 1216px */
+@media screen and (max-width: 1216px) {
+  .images {
+    max-width: 496px; /* Limits the maximum width of images to 496px */
+  }
+}
+
+/* Media query for screens with a maximum width of 1150px */
+@media screen and (max-width: 1150px) {
+  .timeline {
+    width: 80vw; /* Sets the width of the timeline to 80% of the viewport width */
+  }
+  .timeline .checkpoint {
+    width: 100%; /* Makes each checkpoint span the full width */
+    transform: none; /* Resets any transformation applied to checkpoints */
+    padding-left: 0; /* Removes left padding from checkpoints */
+    padding-right: 0; /* Removes right padding from checkpoints */
+    border: none; /* Removes borders from checkpoints */
+  }
+  .timeline .checkpoint::before {
+    width: 3px; /* Sets the width of the vertical line before each checkpoint */
+    height: 4em; /* Sets the height of the vertical line before each checkpoint */
+    top: -2em; /* Positions the vertical line above each checkpoint */
+    left: 50%; /* Positions the vertical line at the center horizontally */
+    transform: translateX(-50%); /* Centers the vertical line horizontally */
+  }
+  .timeline .checkpoint div::before {
+    top: -0.5em; /* Adjusts the position of the circle marker above each checkpoint */
+    left: 50%; /* Positions the circle marker at the center horizontally */
+    transform: translateX(-50%); /* Centers the circle marker horizontally */
+  }
+}
+
+/* Media query for screens with a maximum width of 986px */
+@media screen and (max-width: 986px) {
+  .gallery .images {
+    align-items: center; /* Centers gallery images vertically */
+    flex-direction: column; /* Stacks gallery images vertically */
+  }
+  .gallery img {
+    margin-right: 0 !important; /* Removes right margin from gallery images */
+    margin-left: 0 !important; /* Removes left margin from gallery images */
+  }
+}
+
+/* Media query for screens with a minimum width of 800px */
+@media screen and (min-width: 800px) {
+  #about .container {
+    display: grid; /* Uses CSS grid for layout */
+    grid-template-columns: 1fr 2fr; /* Sets the columns in the grid */
+    grid-gap: 2em; /* Adds gap between grid items */
+  }
+  #about .card {
+    margin: 0; /* Resets margin for about cards */
+  }
+}
+
+/* Media query for screens with a maximum width of 800px */
+@media screen and (max-width: 800px) {
+  .navbar i {
+    display: block; /* Displays icons in the navbar as blocks */
+    font-size: 1.3em; /* Sets the font size of icons in the navbar */
+  }
+  .navbar span {
+    display: none; /* Hides text in the navbar */
+  }
+  #skills .container {
+    grid-template-columns: 1fr; /* Sets a single column layout for skills section */
+  }
+}
+
+/* Media query for screens with a maximum width of 600px */
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 14px; /* Sets the base font size to 14px */
+  }
+  .heading h1::before, .heading h1::after {
+    display: none; /* Hides pseudo-elements before and after heading */
+  }
+  .navbar a {
+    width: 3.5em; /* Sets width of navbar links */
+    height: 3.5em; /* Sets height of navbar links */
+    padding: 0; /* Removes padding from navbar links */
+    display: flex; /* Uses flexbox for alignment */
+    justify-content: center; /* Centers navbar links horizontally */
+    align-items: center; /* Centers navbar links vertically */
+  }
+  .gallery-controls button {
+    width: 100%; /* Sets width of gallery control buttons to 100% */
+    display: block; /* Displays gallery control buttons as blocks */
+  }
+  .gallery .img-expand, .gallery img {
+    width: 100%; /* Sets width of gallery images to 100% */
+  }
+}
+
+/* Media query for screens with a maximum width of 450px */
+@media screen and (max-width: 450px) {
+  .title img {
+    display: none; /* Hides images within the title */
+  }
+}
+
+/* Animation Keyframes */
+
+/* Keyframes for rotating animation */
+@keyframes rotate {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg); /* Rotates element 360 degrees */
+  }
+}
+
+/* Keyframes for gradient animation */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%; /* Sets initial background position */
+  }
+  50% {
+    background-position: 100% 50%; /* Sets intermediate background position */
+  }
+  100% {
+    background-position: 0% 50%; /* Sets final background position */
+  }
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+  to{ transform: rotate(-360deg); } /* Rotates element -360 degrees */
+}
+
+ul {
+  padding-left: 0; /* Removes indentation caused by padding */
+  list-style-type: none; /* Removes bullet points */
+  margin-top: 0; /* Removes margin at the top of the list */
+  margin-bottom: 0; /* Removes margin at the bottom of the list */
+}
+
+ul li {
+  margin-top: 0; /* Removes space above each list item */
+  margin-bottom: 0; /* Removes space below each list item */
+  padding: 0; /* Removes padding inside each list item */
+  line-height: 1; /* Normalizes the line height */
+}
