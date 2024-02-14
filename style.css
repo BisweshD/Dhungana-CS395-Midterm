@@ -1,5 +1,6 @@
 /*=== Variables for CSS colors and gradients ===*/
 :root {
+
   --bg-gradient: linear-gradient(30deg, #0f2b79, #063fa8, #000, #0a230d, #1831b9); /* Background gradient for elements */
   --primary: #0f0f0f;/* Dark color for primary backgrounds */
   --secondary: #333;/* Dark color for secondary elements and backgrounds */
